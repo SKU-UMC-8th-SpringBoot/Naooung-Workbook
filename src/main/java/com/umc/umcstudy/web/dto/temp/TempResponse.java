@@ -1,4 +1,4 @@
-package com.umc.umcstudy.web.dto;
+package com.umc.umcstudy.web.dto.temp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
