@@ -1,5 +1,8 @@
 package com.umc.umcstudy.repository;
 
-public class FoodCategoryRepository {
+import com.umc.umcstudy.domain.entity.FoodCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FoodCategoryRepository extends JpaRepository<FoodCategory, Long> {
 
 }
