@@ -40,4 +40,11 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     return memberRepository.save(newMember);
   }
+
+  public boolean doAllCategoriesExist(List<Long> categoryIds) {
+    return categoryIds.stream().
+        allMatch(foodCategoryRepository::existsById);
+  }
 }
+
+
