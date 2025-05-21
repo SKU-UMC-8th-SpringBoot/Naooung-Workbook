@@ -3,7 +3,7 @@ package com.umc.umcstudy.web.controller;
 import com.umc.umcstudy.apiPayload.ApiResponse;
 import com.umc.umcstudy.converter.TempConverter;
 import com.umc.umcstudy.service.TempService.TempQueryService;
-import com.umc.umcstudy.web.dto.TempResponse;
+import com.umc.umcstudy.web.dto.temp.TempResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
