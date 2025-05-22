@@ -1,4 +1,4 @@
-package com.umc.umcstudy.service.StoreService;
+package com.umc.umcstudy.service.storeService;
 
 import com.umc.umcstudy.domain.entity.Store;
 import java.util.List;
