@@ -1,7 +1,6 @@
 package com.umc.umcstudy.validation.validator;
 
 import com.umc.umcstudy.apiPayload.code.status.ErrorStatus;
-import com.umc.umcstudy.repository.FoodCategoryRepository;
 import com.umc.umcstudy.service.memberService.MemberCommandServiceImpl;
 import com.umc.umcstudy.validation.annotation.ExistCategories;
 import jakarta.validation.ConstraintValidator;
@@ -27,11 +26,10 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
 
     if (!isValid) {
       context.disableDefaultConstraintViolation();
-      context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString())
+      context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.getMessage())
           .addConstraintViolation();
     }
 
     return isValid;
-
   }
 }
