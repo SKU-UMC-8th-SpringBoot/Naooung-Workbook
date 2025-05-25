@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Validated // PathVariable로 받는 값을 ExistStores 어노테이션으로 검증하기 위해 사용
 @RequestMapping("/stores")
-public class ReviewRestController {
+public class StoreRestController {
 
   private final ReviewCommandService reviewCommandService;
 
+  // 가게에 리뷰를 추가하는 API
   @PostMapping("/{storeId}/reviews")
   public ApiResponse<ReviewResponseDto.AddResultDTO> add
       (@PathVariable @ExistStores Long storeId, @RequestBody @Valid ReviewRequestDto.AddDto request) {
