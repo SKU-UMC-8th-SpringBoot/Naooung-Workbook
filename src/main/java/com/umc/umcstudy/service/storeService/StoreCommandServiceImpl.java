@@ -6,13 +6,17 @@ import com.umc.umcstudy.domain.entity.Store;
 import com.umc.umcstudy.repository.RegionRepository;
 import com.umc.umcstudy.repository.storeRepository.StoreRepository;
 import com.umc.umcstudy.web.dto.store.StoreRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@RequiredArgsConstructor
 public class StoreCommandServiceImpl implements StoreCommandService {
 
-  private StoreRepository storeRepository;
+  private final StoreRepository storeRepository;
 
-  private RegionRepository regionRepository;
+  private final RegionRepository regionRepository;
 
   @Override
   @Transactional
