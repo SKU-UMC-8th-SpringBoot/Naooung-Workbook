@@ -1,10 +1,15 @@
 package com.umc.umcstudy.web.controller;
 
 import com.umc.umcstudy.apiPayload.ApiResponse;
+import com.umc.umcstudy.converter.MissionConverter;
 import com.umc.umcstudy.converter.ReviewConverter;
+import com.umc.umcstudy.domain.entity.Mission;
 import com.umc.umcstudy.domain.entity.Review;
+import com.umc.umcstudy.service.missionService.MissionCommandService;
 import com.umc.umcstudy.service.reviewService.ReviewCommandService;
 import com.umc.umcstudy.validation.annotation.ExistStores;
+import com.umc.umcstudy.web.dto.mission.MissionRequestDto;
+import com.umc.umcstudy.web.dto.mission.MissionResponseDto;
 import com.umc.umcstudy.web.dto.review.ReviewRequestDto;
 import com.umc.umcstudy.web.dto.review.ReviewResponseDto;
 import jakarta.validation.Valid;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StoreRestController {
 
   private final ReviewCommandService reviewCommandService;
+  private final MissionCommandService missionCommandService;
 
   // 가게에 리뷰를 추가하는 API
   @PostMapping("/{storeId}/reviews")
@@ -31,5 +37,14 @@ public class StoreRestController {
 
     Review review = reviewCommandService.addReview(storeId, request);
     return ApiResponse.onSuccess(ReviewConverter.toAddResultDTO(review));
+  }
+
+  // 가게에 미션을 추가하는 API
+  @PostMapping("/{storeId}/missions")
+  public ApiResponse<MissionResponseDto.AddMissionDTO> add
+      (@PathVariable @ExistStores Long storeId, @RequestBody @Valid MissionRequestDto.AddDto request) {
+
+    Mission mission = missionCommandService.addMission(storeId, request);
+    return ApiResponse.onSuccess(MissionConverter.toAddMissionDTO(mission));
   }
 }
