@@ -19,4 +19,3 @@ public @interface ValidPage {
   Class<?>[] groups() default {};
   Class<? extends Payload>[] payload() default {};
 }
-}
