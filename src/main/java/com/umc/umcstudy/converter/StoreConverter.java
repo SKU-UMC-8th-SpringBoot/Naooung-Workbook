@@ -1,5 +1,6 @@
 package com.umc.umcstudy.converter;
 
+import com.umc.umcstudy.domain.entity.Mission;
 import com.umc.umcstudy.domain.entity.Region;
 import com.umc.umcstudy.domain.entity.Review;
 import com.umc.umcstudy.domain.entity.Store;
@@ -48,6 +49,30 @@ public class StoreConverter {
         .totalElements(reviewList.getTotalElements())
         .listSize(reviewPreViewDTOList.size())
         .reviewList(reviewPreViewDTOList)
+        .build();
+  }
+
+  public static StoreResponseDto.MissionPreViewDTO missionPreViewDTO(Mission mission){
+    return StoreResponseDto.MissionPreViewDTO.builder()
+        .reward(mission.getReward())
+        .deadline(mission.getDeadline())
+        .missionSpec(mission.getMissionSpec())
+        .createdAt(mission.getCreatedAt().toLocalDate())
+        .build();
+  }
+
+  public static StoreResponseDto.MissionPreViewListDTO missionPreViewListDTO(Page<Mission> missionList){
+
+    List<StoreResponseDto.MissionPreViewDTO> missionPreViewDTOList = missionList.stream()
+        .map(StoreConverter::missionPreViewDTO).collect(Collectors.toList());
+
+    return StoreResponseDto.MissionPreViewListDTO.builder()
+        .isLast(missionList.isLast())
+        .isFirst(missionList.isFirst())
+        .totalPage(missionList.getTotalPages())
+        .totalElements(missionList.getTotalElements())
+        .listSize(missionPreViewDTOList.size())
+        .missionList(missionPreViewDTOList)
         .build();
   }
 }

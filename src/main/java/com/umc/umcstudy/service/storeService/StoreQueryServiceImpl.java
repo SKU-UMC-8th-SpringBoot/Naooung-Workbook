@@ -1,7 +1,9 @@
 package com.umc.umcstudy.service.storeService;
 
+import com.umc.umcstudy.domain.entity.Mission;
 import com.umc.umcstudy.domain.entity.Review;
 import com.umc.umcstudy.domain.entity.Store;
+import com.umc.umcstudy.repository.MissionRepository;
 import com.umc.umcstudy.repository.ReviewRepository;
 import com.umc.umcstudy.repository.storeRepository.StoreRepository;
 import java.util.List;
@@ -21,10 +23,7 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
   private final ReviewRepository reviewRepository;
 
-  @Override
-  public Optional<Store> findStore(Long id) {
-    return storeRepository.findById(id);
-  }
+  private final MissionRepository missionRepository;
 
   @Override
   public List<Store> findStoresByNameAndScore(String name, Float score) {
@@ -40,7 +39,16 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
     Store store = storeRepository.findById(StoreId).get();
 
-    Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+    Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page - 1, 10));
+    return StorePage;
+  }
+
+  @Override
+  public Page<Mission> getMissionList(Long StoreId, Integer page) {
+
+    Store store = storeRepository.findById(StoreId).get();
+
+    Page<Mission> StorePage = missionRepository.findAllByStore(store, PageRequest.of(page - 1, 10));
     return StorePage;
   }
 }
