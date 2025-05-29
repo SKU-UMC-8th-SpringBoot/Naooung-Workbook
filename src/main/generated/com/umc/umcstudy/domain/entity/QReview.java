@@ -24,6 +24,8 @@ public class QReview extends EntityPathBase<Review> {
 
     public final com.umc.umcstudy.domain.common.QBaseEntity _super = new com.umc.umcstudy.domain.common.QBaseEntity(this);
 
+    public final StringPath body = createString("body");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
