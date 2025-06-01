@@ -1,4 +1,4 @@
-package com.umc.umcstudy.service.memberMission;
+package com.umc.umcstudy.service.memberMissionService;
 
 import com.umc.umcstudy.converter.MemberMissionConverter;
 import com.umc.umcstudy.domain.entity.Member;
