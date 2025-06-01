@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberMissionQueryServiceImpl implements MemberMissionQueryService {
 
   private final MemberMissionRepository memberMissionRepository;
-  private final MissionRepository missionRepository;
 
   public Page<Mission> getMissionsByStatus(Member member, MissionStatus status, Integer page) {
 
