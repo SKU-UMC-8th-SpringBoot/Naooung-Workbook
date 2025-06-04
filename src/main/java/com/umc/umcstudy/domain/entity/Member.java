@@ -3,6 +3,7 @@ package com.umc.umcstudy.domain.entity;
 import com.umc.umcstudy.domain.common.BaseEntity;
 import com.umc.umcstudy.domain.enums.Gender;
 import com.umc.umcstudy.domain.enums.MemberStatus;
+import com.umc.umcstudy.domain.enums.Role;
 import com.umc.umcstudy.domain.enums.SocialType;
 import com.umc.umcstudy.domain.mapping.MemberAgree;
 import com.umc.umcstudy.domain.mapping.MemberMission;
@@ -24,7 +25,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -65,11 +65,17 @@ public class Member extends BaseEntity {
 
   private LocalDate inactiveDate;
 
-//  @Column(nullable = false, length = 50)
-  private String email;
-
   @Builder.Default
   private Integer point = 0;
+
+  @Column(nullable = false, unique = true)
+  private String email;
+
+  @Column(nullable = false)
+  private String password;
+
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   @Builder.Default
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -83,4 +89,8 @@ public class Member extends BaseEntity {
 
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<MemberMission> memberMissionList = new ArrayList<>();
+
+  public void encodePassword(String password) {
+    this.password = password;
+  }
 }

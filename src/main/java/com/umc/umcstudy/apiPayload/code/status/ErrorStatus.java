@@ -27,6 +27,10 @@ public enum ErrorStatus implements BaseErrorCode {
   // For test
   TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트"),
 
+  // Token 관련 에러
+  INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "AUTH4011", "유효하지 않은 토큰입니다."),
+  INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "MEMBER4012", "비밀번호가 올바르지 않습니다."),
+
   // 카테고리 관련 에러
   FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "존재하지 않는 카테고리입니다.");
 
